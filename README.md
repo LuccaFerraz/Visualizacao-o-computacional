@@ -1,1 +1,1 @@
-# Visualiza-o-computacional
+# Visualizacao-computacional
