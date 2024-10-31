@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "param_7_store"}, {"name": "source_0", "values": [{"amndt_ind": "A", "count": 2221016, "percentage": 0.665416, "percentage_end": 0.665416, "percentage_start": 0.0}, {"amndt_ind": "N", "count": 1114670, "percentage": 0.333955, "percentage_end": 0.999371, "percentage_start": 0.665416}, {"amndt_ind": "T", "count": 2102, "percentage": 0.00063, "percentage_end": 1.000001, "percentage_start": 0.9993709999999999}]}, {"name": "source_0_color_domain_amndt_ind", "values": [{"amndt_ind": "A"}, {"amndt_ind": "N"}, {"amndt_ind": "T"}]}], "signals": [{"name": "unit", "value": {}, "on": [{"events": "pointermove", "update": "isTuple(group()) ? group() : unit"}]}, {"name": "param_7", "update": "vlSelectionResolve(\"param_7_store\", \"union\", true, true)"}, {"name": "param_7_tuple", "on": [{"events": [{"source": "scope", "type": "mouseover"}], "update": "datum && item().mark.marktype !== 'group' && indexof(item().mark.role, 'legend') < 0 ? {unit: \"\", fields: param_7_tuple_fields, values: [(item().isVoronoi ? datum.datum : datum)[\"amndt_ind\"]]} : null", "force": true}, {"events": [{"source": "view", "type": "dblclick"}], "update": "null"}]}, {"name": "param_7_tuple_fields", "value": [{"type": "E", "field": "amndt_ind"}]}, {"name": "param_7_toggle", "value": false, "on": [{"events": [{"source": "scope", "type": "mouseover"}], "update": "event.shiftKey"}, {"events": [{"source": "view", "type": "dblclick"}], "update": "false"}]}, {"name": "param_7_modify", "on": [{"events": {"signal": "param_7_tuple"}, "update": "modify(\"param_7_store\", param_7_toggle ? null : param_7_tuple, param_7_toggle ? null : true, param_7_toggle ? param_7_tuple : null)"}]}], "marks": [{"type": "arc", "name": "marks", "from": {"data": "source_0"}, "encode": {"update": {"x": {"signal": "width", "mult": 0.5}, "endAngle": {"field": "percentage_start", "scale": "theta"}, "tooltip": {"signal": "{\"amndt_ind\": isValid(datum[\"amndt_ind\"]) ? datum[\"amndt_ind\"] : \"\"+datum[\"amndt_ind\"], \"count\": format(datum[\"count\"], \"\"), \"percentage\": format(datum[\"percentage\"], \".2%\")}"}, "startAngle": {"field": "percentage_end", "scale": "theta"}, "fill": [{"value": "#ffba08", "test": "length(data(\"param_7_store\")) && vlSelectionTest(\"param_7_store\", datum)"}, {"field": "amndt_ind", "scale": "color"}], "y": {"signal": "height", "mult": 0.5}, "outerRadius": {"signal": "min(width,height)/2"}, "innerRadius": {"value": 0}}}, "interactive": true, "style": ["arc"]}], "scales": [{"name": "theta", "type": "linear", "domain": {"data": "source_0", "fields": ["percentage_start", "percentage_end"]}, "range": [0, 6.283185307179586], "zero": true}, {"name": "color", "type": "ordinal", "domain": {"data": "source_0_color_domain_amndt_ind", "field": "amndt_ind", "sort": true}, "range": ["#0b132b", "#3a506b", "#6fffe9"]}], "title": {"text": "Distribui\u00e7\u00e3o do indicador de emenda", "frame": "group"}, "background": "white", "width": 400, "style": "view", "height": 400, "legends": [{"title": "Classes", "fill": "color", "symbolType": "circle"}], "padding": 5};
+      var embedOpt = {"mode": "vega"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
