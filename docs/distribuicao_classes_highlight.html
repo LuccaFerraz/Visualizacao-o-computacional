@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "param_14_store"}, {"name": "source_0"}, {"name": "data_0", "values": [{"count": 8668, "entity_tp": "ORG", "percentage": 0.002597, "percentage_end": 0.002597, "percentage_start": 0.0}, {"count": 7752, "entity_tp": "CAN", "percentage": 0.002322, "percentage_end": 0.002322, "percentage_start": 0.0}, {"count": 4304, "entity_tp": "PAC", "percentage": 0.001289, "percentage_end": 0.001289, "percentage_start": 0.0}, {"count": 2539, "entity_tp": "CCM", "percentage": 0.000761, "percentage_end": 0.000761, "percentage_start": 0.0}, {"count": 665, "entity_tp": "COM", "percentage": 0.000199, "percentage_end": 0.000199, "percentage_start": 0.0}, {"count": 93, "entity_tp": "PTY", "percentage": 2.8e-05, "percentage_end": 2.8e-05, "percentage_start": 0.0}]}, {"name": "source_0_y_domain_entity_tp", "values": [{"entity_tp": "ORG", "sort_field": 0.002597}, {"entity_tp": "CAN", "sort_field": 0.002322}, {"entity_tp": "PAC", "sort_field": 0.001289}, {"entity_tp": "CCM", "sort_field": 0.000761}, {"entity_tp": "COM", "sort_field": 0.000199}, {"entity_tp": "PTY", "sort_field": 2.8e-05}]}, {"name": "data_0_color_domain_percentage", "values": [{"min": 2.8e-05, "max": 0.002597}]}], "signals": [{"name": "unit", "value": {}, "on": [{"events": "pointermove", "update": "isTuple(group()) ? group() : unit"}]}, {"name": "param_14", "update": "vlSelectionResolve(\"param_14_store\", \"union\", true, true)"}, {"name": "param_14_tuple", "on": [{"events": [{"source": "scope", "type": "mouseover"}], "update": "datum && item().mark.marktype !== 'group' && indexof(item().mark.role, 'legend') < 0 ? {unit: \"\", fields: param_14_tuple_fields, values: [(item().isVoronoi ? datum.datum : datum)[\"entity_tp\"]]} : null", "force": true}, {"events": [{"source": "view", "type": "dblclick"}], "update": "null"}]}, {"name": "param_14_tuple_fields", "value": [{"type": "E", "field": "entity_tp"}]}, {"name": "param_14_toggle", "value": false, "on": [{"events": [{"source": "scope", "type": "mouseover"}], "update": "event.shiftKey"}, {"events": [{"source": "view", "type": "dblclick"}], "update": "false"}]}, {"name": "param_14_modify", "on": [{"events": {"signal": "param_14_tuple"}, "update": "modify(\"param_14_store\", param_14_toggle ? null : param_14_tuple, param_14_toggle ? null : true, param_14_toggle ? param_14_tuple : null)"}]}], "marks": [{"type": "rect", "name": "marks", "from": {"data": "data_0"}, "encode": {"update": {"height": {"signal": "max(0.25, bandwidth('y'))"}, "x": {"field": "percentage_end", "scale": "x"}, "y": {"field": "entity_tp", "scale": "y"}, "x2": {"field": "percentage_start", "scale": "x"}, "fill": [{"value": "#ffba08", "test": "length(data(\"param_14_store\")) && vlSelectionTest(\"param_14_store\", datum)"}, {"field": "percentage", "scale": "color"}], "tooltip": {"signal": "{\"entity_tp\": isValid(datum[\"entity_tp\"]) ? datum[\"entity_tp\"] : \"\"+datum[\"entity_tp\"], \"count\": format(datum[\"count\"], \"\"), \"percentage\": format(datum[\"percentage\"], \"\")}"}}}, "interactive": true, "style": ["bar"]}], "scales": [{"name": "x", "type": "linear", "domain": {"data": "data_0", "fields": ["percentage_start", "percentage_end"]}, "range": [0, {"signal": "width"}], "nice": true, "zero": true}, {"name": "y", "type": "band", "domain": {"data": "source_0_y_domain_entity_tp", "field": "entity_tp", "sort": {"op": "max", "field": "sort_field", "order": "descending"}}, "range": [0, {"signal": "height"}], "paddingInner": 0.1, "paddingOuter": 0.05}, {"name": "color", "type": "linear", "domain": [{"signal": "(data(\"data_0_color_domain_percentage\")[0] || {}).min"}, {"signal": "(data(\"data_0_color_domain_percentage\")[0] || {}).max"}], "range": ["#57b1b1", "#3a506b", "#354964", "#2a3c56", "#1b2740", "#0b132b"], "interpolate": "hcl", "zero": false}], "axes": [{"scale": "x", "gridScale": "y", "orient": "bottom", "ticks": false, "zindex": 0, "labels": false, "grid": true, "minExtent": 0, "domain": false, "tickCount": {"signal": "ceil(width/40)"}, "aria": false, "maxExtent": 0}, {"scale": "x", "orient": "bottom", "zindex": 0, "title": "Porcentagem", "grid": false, "tickCount": {"signal": "ceil(width/40)"}, "labelFlush": true, "format": "%", "labelOverlap": true}, {"scale": "y", "title": "Classes", "grid": false, "orient": "left", "zindex": 0}], "title": {"text": "Distribui\u00e7\u00e3o das Classes por Porcentagem (Sem a Classe Majorit\u00e1ria) com Highlight", "frame": "group"}, "background": "white", "height": 400, "style": "cell", "width": 600, "padding": 5};
+      var embedOpt = {"mode": "vega"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
