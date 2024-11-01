@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "source_0"}, {"name": "data_1", "values": [{"quantia_total": 84016.77825945576, "quantia_total_end": 84016.77825945576, "quantia_total_start": 0.0, "razao_contribuicao": 6.614452705042967, "transaction_pgi": "Outras"}, {"quantia_total": 71240.78674672826, "quantia_total_end": 71240.78674672826, "quantia_total_start": 0.0, "razao_contribuicao": 6.298920136757583, "transaction_pgi": "Conven\u00e7\u00e3o"}, {"quantia_total": 49077.51168489416, "quantia_total_end": 49077.51168489416, "quantia_total_start": 0.0, "razao_contribuicao": 6.311408395691122, "transaction_pgi": "Especial"}, {"quantia_total": 38319.229433612774, "quantia_total_end": 38319.229433612774, "quantia_total_start": 0.0, "razao_contribuicao": 6.4717496087844575, "transaction_pgi": "Segundo Turno"}, {"quantia_total": 3519.9315095625248, "quantia_total_end": 3519.9315095625248, "quantia_total_start": 0.0, "razao_contribuicao": 6.730270572777294, "transaction_pgi": "Elei\u00e7\u00e3o"}, {"quantia_total": 1852.0208932787668, "quantia_total_end": 1852.0208932787668, "quantia_total_start": 0.0, "razao_contribuicao": 7.880939971399008, "transaction_pgi": "0"}]}, {"name": "data_2", "values": [{"quantia_total": 84016.77825945576, "razao_contribuicao": 6.614452705042967, "transaction_pgi": "Outras"}, {"quantia_total": 71240.78674672826, "razao_contribuicao": 6.298920136757583, "transaction_pgi": "Conven\u00e7\u00e3o"}, {"quantia_total": 49077.51168489416, "razao_contribuicao": 6.311408395691122, "transaction_pgi": "Especial"}, {"quantia_total": 38319.229433612774, "razao_contribuicao": 6.4717496087844575, "transaction_pgi": "Segundo Turno"}, {"quantia_total": 3519.9315095625248, "razao_contribuicao": 6.730270572777294, "transaction_pgi": "Elei\u00e7\u00e3o"}, {"quantia_total": 1852.0208932787668, "razao_contribuicao": 7.880939971399008, "transaction_pgi": "0"}]}, {"name": "source_0_x_domain_transaction_pgi", "values": [{"sort_field": 84016.77825945576, "transaction_pgi": "Outras"}, {"sort_field": 71240.78674672826, "transaction_pgi": "Conven\u00e7\u00e3o"}, {"sort_field": 49077.51168489416, "transaction_pgi": "Especial"}, {"sort_field": 38319.229433612774, "transaction_pgi": "Segundo Turno"}, {"sort_field": 3519.9315095625248, "transaction_pgi": "Elei\u00e7\u00e3o"}, {"sort_field": 1852.0208932787668, "transaction_pgi": "0"}]}], "marks": [{"type": "rect", "name": "layer_0_marks", "from": {"data": "data_1"}, "encode": {"update": {"x": {"field": "transaction_pgi", "scale": "x"}, "tooltip": {"signal": "{\"Etapa do Ciclo\": isValid(datum[\"transaction_pgi\"]) ? datum[\"transaction_pgi\"] : \"\"+datum[\"transaction_pgi\"], \"Quantia total de contribui\u00e7\u00e3o\": format(datum[\"quantia_total\"], \"\"), \"Propor\u00e7\u00e3o Quantia/Contribuintes\": format(datum[\"razao_contribuicao\"], \"\")}"}, "width": {"signal": "max(0.25, bandwidth('x'))"}, "y2": {"field": "quantia_total_start", "scale": "y"}, "y": {"field": "quantia_total_end", "scale": "y"}, "fill": {"field": "transaction_pgi", "scale": "color"}}}, "style": ["bar"]}, {"type": "text", "name": "layer_1_marks", "from": {"data": "data_2"}, "encode": {"update": {"text": {"signal": "format(datum[\"razao_contribuicao\"], \".2f\")"}, "align": {"value": "center"}, "baseline": {"value": "middle"}, "x": {"field": "transaction_pgi", "scale": "x", "band": 0.5}, "y": {"field": "quantia_total", "scale": "y"}, "dy": {"value": -10}, "fill": {"value": "black"}}}, "style": ["text"]}], "scales": [{"name": "x", "type": "band", "domain": {"data": "source_0_x_domain_transaction_pgi", "field": "transaction_pgi", "sort": {"op": "max", "field": "sort_field", "order": "descending"}}, "range": [0, {"signal": "width"}], "paddingOuter": 0.05, "paddingInner": 0.1}, {"name": "y", "type": "linear", "domain": {"fields": [{"data": "data_1", "field": "quantia_total_start"}, {"data": "data_1", "field": "quantia_total_end"}, {"data": "data_2", "field": "quantia_total"}]}, "range": [{"signal": "height"}, 0], "nice": true, "zero": true}, {"name": "color", "type": "ordinal", "domain": ["Outras", "Conven\u00e7\u00e3o", "Especial", "Segundo Turno", "Elei\u00e7\u00e3o", "0"], "range": ["#354964", "#3a506b", "#3a506b", "#57b1b1", "#63d8cd", " #6fffe9"]}], "axes": [{"scale": "x", "labelAlign": "right", "labelAngle": 270, "orient": "bottom", "labelBaseline": "middle", "grid": false, "title": "Etapa do Ciclo Eleitoral", "zindex": 0}, {"scale": "y", "tickCount": {"signal": "ceil(height/40)"}, "orient": "left", "grid": false, "labelOverlap": true, "title": "Quantia Total de Contribui\u00e7\u00f5es (em USD)", "zindex": 0}], "title": {"text": "Quantia Total de Contribui\u00e7\u00f5es por Etapa do Ciclo Eleitoral", "frame": "group"}, "padding": 5, "legends": [{"title": "Etapa", "fill": "color", "symbolType": "square"}], "style": "cell", "height": 300, "config": {"axis": {"grid": false}, "style": {"cell": {"fill": "white"}}}, "background": "rgba(0, 0, 0, 0)", "width": 600};
+      var embedOpt = {"mode": "vega"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
